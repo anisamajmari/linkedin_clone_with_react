@@ -181,7 +181,7 @@ const Google = styled.button`
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
+    user: state.userState.user,
   };
 };
 

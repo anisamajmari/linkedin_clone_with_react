@@ -1,13 +1,41 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import styled from "styled-components";
+import { TfiCommentAlt } from "react-icons/tfi";
+import { RiShareForwardLine } from "react-icons/ri";
+import { AiOutlineSend } from "react-icons/ai";
+import { useState } from "react";
+
+import PostModal from "./PostModal";
 
 const Main = (props) => {
+  const [showModal, setShowModal] = useState("close");
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    if (e.target !== e.currentTarget) {
+      return;
+    }
+
+    switch (showModal) {
+      case "open":
+        setShowModal("close");
+        break;
+      case "close":
+        setShowModal("open");
+        break;
+      default:
+        setShowModal("close");
+        break;
+    }
+  };
+
   return (
     <Container>
       <ShareBox>
         Share
         <div>
           <img src="/images/user.svg" alt="" />
-          <button>Start a post</button>
+          <button onClick={handleClick}>Start a post</button>
         </div>
         <div>
           <button>
@@ -81,31 +109,23 @@ const Main = (props) => {
             </button>
 
             <button>
-              <img
-                src="https://static-exp1.licdn.com/sc/h/d310t2g24pvdy4pt1jkedo4yb"
-                alt=""
-              />
+              <TfiCommentAlt />
               <span>Comments</span>
             </button>
 
             <button>
-              <img
-                src="https://static-exp1.licdn.com/sc/h/d310t2g24pvdy4pt1jkedo4yb"
-                alt=""
-              />
+              <RiShareForwardLine />
               <span>Share</span>
             </button>
 
             <button>
-              <img
-                src="https://static-exp1.licdn.com/sc/h/d310t2g24pvdy4pt1jkedo4yb"
-                alt=""
-              />
+              <AiOutlineSend />
               <span>Send</span>
             </button>
           </SocialActions>
         </Article>
       </div>
+      <PostModal showModal={showModal} handleClick={handleClick} />
     </Container>
   );
 };

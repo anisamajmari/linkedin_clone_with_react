@@ -89,7 +89,7 @@ const Layout = styled.div`
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
+    user: state.userState.user,
   };
 };
 

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { connect } from "react-redux";
 import styled from "styled-components";
 
@@ -265,7 +266,7 @@ const Work = styled(User)`
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
+    user: state.userState.user,
   };
 };
 

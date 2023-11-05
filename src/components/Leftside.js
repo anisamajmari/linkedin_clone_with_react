@@ -214,7 +214,7 @@ const CommunityCard = styled(ArtCard)`
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
+    user: state.userState.user,
   };
 };
 
