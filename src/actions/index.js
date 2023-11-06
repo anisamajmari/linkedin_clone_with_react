@@ -3,11 +3,16 @@ import { auth, provider, storage } from "../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { collection, addDoc } from "firebase/firestore";
 import db from "../firebase";
-import { SET_USER } from "./actionType";
+import { SET_USER, SET_LOADING_STATUS } from "./actionType";
 
 export const setUser = (payload) => ({
   type: SET_USER,
   user: payload,
+});
+
+export const setLoading = (status) => ({
+  type: SET_LOADING_STATUS,
+  status: status,
 });
 
 export function signInAPI() {
@@ -43,6 +48,8 @@ export function signOutAPI() {
 
 export function postArticleAPI(payload) {
   return (dispatch) => {
+    dispatch(setLoading(true));
+
     if (payload.image !== "") {
       const storageRef = ref(storage, `images/${payload.image.name}`);
 
@@ -75,6 +82,7 @@ export function postArticleAPI(payload) {
               comments: 0,
               description: payload.description,
             });
+            dispatch(setLoading(false));
           });
         }
       );
@@ -91,6 +99,7 @@ export function postArticleAPI(payload) {
         comments: 0,
         description: payload.description,
       });
+      dispatch(setLoading(false));
     }
   };
 }

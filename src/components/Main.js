@@ -4,8 +4,10 @@ import { TfiCommentAlt } from "react-icons/tfi";
 import { RiShareForwardLine } from "react-icons/ri";
 import { AiOutlineSend } from "react-icons/ai";
 import { useState } from "react";
+import { FiLoader } from "react-icons/fi";
 
 import PostModal from "./PostModal";
+import { connect } from "react-redux";
 
 const Main = (props) => {
   const [showModal, setShowModal] = useState("close");
@@ -32,11 +34,17 @@ const Main = (props) => {
   return (
     <Container>
       <ShareBox>
-        Share
         <div>
-          <img src="/images/user.svg" alt="" />
-          <button onClick={handleClick}>Start a post</button>
+          {props.user && props.user.photoURL ? (
+            <img src={props.user.photoURL} alt="" />
+          ) : (
+            <img src="/images/user.svg" alt="" />
+          )}
+          <button onClick={handleClick} disabled={props.loading ? true : false}>
+            Start a post
+          </button>
         </div>
+
         <div>
           <button>
             <img src="/images/picture-icon.svg" alt="" />
@@ -59,7 +67,9 @@ const Main = (props) => {
           </button>
         </div>
       </ShareBox>
-      <div>
+      <Content>
+        {props.loading && <FiLoader size={35} />}
+
         <Article>
           <SharedActor>
             <a href="">
@@ -124,7 +134,7 @@ const Main = (props) => {
             </button>
           </SocialActions>
         </Article>
-      </div>
+      </Content>
       <PostModal showModal={showModal} handleClick={handleClick} />
     </Container>
   );
@@ -330,4 +340,17 @@ const SocialActions = styled.div`
   }
 `;
 
-export default Main;
+const Content = styled.div`
+  text-align: center;
+`;
+
+const mapStateToProps = (state) => {
+  return {
+    loading: state.articleState.loading,
+    user: state.userState.user,
+  };
+};
+
+const dispatchToProps = (dispatch) => ({});
+
+export default connect(mapStateToProps, dispatchToProps)(Main);
