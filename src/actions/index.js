@@ -4,12 +4,9 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import {
   collection,
   addDoc,
-  doc,
   onSnapshot,
-  getDoc,
   orderBy,
   query,
-  getDocs,
 } from "firebase/firestore";
 import db from "../firebase";
 import { SET_USER, SET_LOADING_STATUS, GET_ARTICLES } from "./actionType";

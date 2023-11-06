@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable react-hooks/exhaustive-deps */
 import styled from "styled-components";
 import { TfiCommentAlt } from "react-icons/tfi";
 import { RiShareForwardLine } from "react-icons/ri";

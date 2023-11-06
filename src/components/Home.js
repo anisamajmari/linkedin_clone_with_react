@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import styled from "styled-components";
 import { Navigate } from "react-router-dom";
 import { connect } from "react-redux";
@@ -10,7 +11,6 @@ const Home = (props) => {
   return (
     <Container>
       {!props.user && <Navigate to="/" />}
-      {/* <Content> */}
       <Section>
         <h5>
           <a href="">Hiring in a hurry? -</a>
@@ -20,7 +20,6 @@ const Home = (props) => {
           moving.
         </p>
       </Section>
-      {/* </Content> */}
       {props.user && (
         <Layout>
           <Leftside />
@@ -35,12 +34,6 @@ const Home = (props) => {
 const Container = styled.div`
   padding-top: 52px;
   max-width: 100%;
-`;
-
-const Content = styled.div`
-  max-width: 1128px;
-  margin-left: auto;
-  margin-right: auto;
 `;
 
 const Section = styled.section`
