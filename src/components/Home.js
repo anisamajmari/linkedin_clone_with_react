@@ -21,12 +21,13 @@ const Home = (props) => {
         </p>
       </Section>
       {/* </Content> */}
-
-      <Layout>
-        <Leftside />
-        <Main />
-        <Rightside />
-      </Layout>
+      {props.user && (
+        <Layout>
+          <Leftside />
+          <Main />
+          <Rightside />
+        </Layout>
+      )}
     </Container>
   );
 };

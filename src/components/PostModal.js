@@ -6,7 +6,7 @@ import { TfiCommentAlt } from "react-icons/tfi";
 import { useState } from "react";
 import ReactPlayer from "react-player";
 import { connect } from "react-redux";
-import { serverTimestamp } from "firebase/firestore";
+import { Timestamp } from "firebase/firestore";
 import { postArticleAPI } from "../actions";
 
 const PostModal = (props) => {
@@ -43,8 +43,9 @@ const PostModal = (props) => {
       video: videoLink,
       user: props.user,
       description: editorText,
-      timestamp: serverTimestamp(),
+      timestamp: Timestamp.fromDate(new Date()),
     };
+    console.log(payload, "para postit");
 
     props.postArticle(payload);
     reset(e);

@@ -5,13 +5,14 @@ import {
   collection,
   addDoc,
   doc,
+  onSnapshot,
   getDoc,
   orderBy,
   query,
   getDocs,
 } from "firebase/firestore";
 import db from "../firebase";
-import { SET_USER, SET_LOADING_STATUS } from "./actionType";
+import { SET_USER, SET_LOADING_STATUS, GET_ARTICLES } from "./actionType";
 
 export const setUser = (payload) => ({
   type: SET_USER,
@@ -21,6 +22,11 @@ export const setUser = (payload) => ({
 export const setLoading = (status) => ({
   type: SET_LOADING_STATUS,
   status: status,
+});
+
+export const getArticles = (payload) => ({
+  type: GET_ARTICLES,
+  payload: payload,
 });
 
 export function signInAPI() {
@@ -117,9 +123,9 @@ export function getArticlesAPI() {
     let payload;
 
     const q = query(collection(db, "articles"), orderBy("actor.date", "desc"));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      console.log(doc.data());
+    onSnapshot(q, (snapshot) => {
+      payload = snapshot.docs.map((doc) => doc.data());
+      dispatch(getArticles(payload));
     });
   };
 }
