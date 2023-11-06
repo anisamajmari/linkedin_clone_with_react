@@ -41,128 +41,125 @@ const Main = (props) => {
   console.log(props.articles);
   return (
     <>
-      {props.articles.length === 0 ? (
-        <p>There are no articles.</p>
-      ) : (
-        <Container>
-          <ShareBox>
-            <div>
-              {props.user && props.user.photoURL ? (
-                <img src={props.user.photoURL} alt="" />
-              ) : (
-                <img src="/images/user.svg" alt="" />
-              )}
-              <button
-                onClick={handleClick}
-                disabled={props.loading ? true : false}
-              >
-                Start a post
-              </button>
-            </div>
+      <Container>
+        <ShareBox>
+          <div>
+            {props.user && props.user.photoURL ? (
+              <img src={props.user.photoURL} alt="" />
+            ) : (
+              <img src="/images/user.svg" alt="" />
+            )}
+            <button
+              onClick={handleClick}
+              disabled={props.loading ? true : false}
+            >
+              Start a post
+            </button>
+          </div>
 
-            <div>
-              <button>
-                <img src="/images/picture-icon.svg" alt="" />
-                <span>Photo</span>
-              </button>
+          <div>
+            <button>
+              <img src="/images/picture-icon.svg" alt="" />
+              <span>Photo</span>
+            </button>
 
-              <button>
-                <img src="/images/video-icon.svg" alt="" />
-                <span>Video</span>
-              </button>
+            <button>
+              <img src="/images/video-icon.svg" alt="" />
+              <span>Video</span>
+            </button>
 
-              <button>
-                <img src="/images/event-icon.svg" alt="" />
-                <span>Event</span>
-              </button>
+            <button>
+              <img src="/images/event-icon.svg" alt="" />
+              <span>Event</span>
+            </button>
 
-              <button>
-                <img src="/images/article-icon.svg" alt="" />
-                <span>Write article</span>
-              </button>
-            </div>
-          </ShareBox>
-          <Content>
-            {props.loading && <FiLoader size={35} />}
-            {props.articles.length > 0 &&
-              props.articles.map((article, key) => (
-                <Article key={key}>
-                  <SharedActor>
-                    <a href="">
-                      <img src={article.actor.image} alt="" />
-                      <div>
-                        <span>{article.actor.title}</span>
-                        <span>{article.actor.description}</span>
-                        <span>
-                          {article.actor.date.toDate().toLocaleDateString()}
-                        </span>
-                      </div>
-                    </a>
-                    <button>
-                      <img src="/images/ellipsis.png" alt="" />
-                    </button>
-                  </SharedActor>
+            <button>
+              <img src="/images/article-icon.svg" alt="" />
+              <span>Write article</span>
+            </button>
+          </div>
+        </ShareBox>
+        <Content>
+          {props.articles.length === 0 && <p>There are no articles.</p>}
+          {props.loading && <FiLoader size={35} />}
+          {props.articles.length > 0 &&
+            props.articles.map((article, key) => (
+              <Article key={key}>
+                <SharedActor>
+                  <a href="">
+                    <img src={article.actor.image} alt="" />
+                    <div>
+                      <span>{article.actor.title}</span>
+                      <span>{article.actor.description}</span>
+                      <span>
+                        {article.actor.date.toDate().toLocaleDateString()}
+                      </span>
+                    </div>
+                  </a>
+                  <button>
+                    <img src="/images/ellipsis.png" alt="" />
+                  </button>
+                </SharedActor>
 
-                  <Description>{article.description}</Description>
-                  <SharedImage>
-                    <a href="">
-                      {!article.sharedImg && article.video ? (
-                        <ReactPlayer width={"100%"} url={article.video} />
-                      ) : (
-                        article.sharedImg && (
-                          <img src={article.sharedImg} alt="" />
-                        )
-                      )}
-                    </a>
-                  </SharedImage>
-                  <SocialCounts>
-                    <li>
-                      <button>
-                        <img
-                          src="https://static-exp1.licdn.com/sc/h/d310t2g24pvdy4pt1jkedo4yb"
-                          alt=""
-                        />
-                        <img
-                          src="https://static-exp1.licdn.com/sc/h/5thsbmikm6a8uov24ygwd914f"
-                          alt=""
-                        />
-                        <span>75</span>
-                      </button>
-                    </li>
-                    <li>
-                      <a href="">{article.comments}</a>
-                    </li>
-                  </SocialCounts>
-                  <SocialActions>
+                <Description>{article.description}</Description>
+                <SharedImage>
+                  <a href="">
+                    {!article.sharedImg && article.video ? (
+                      <ReactPlayer width={"100%"} url={article.video} />
+                    ) : (
+                      article.sharedImg && (
+                        <img src={article.sharedImg} alt="" />
+                      )
+                    )}
+                  </a>
+                </SharedImage>
+                <SocialCounts>
+                  <li>
                     <button>
                       <img
                         src="https://static-exp1.licdn.com/sc/h/d310t2g24pvdy4pt1jkedo4yb"
                         alt=""
                       />
-                      <span>Like</span>
+                      <img
+                        src="https://static-exp1.licdn.com/sc/h/5thsbmikm6a8uov24ygwd914f"
+                        alt=""
+                      />
+                      <span>75</span>
                     </button>
+                  </li>
+                  <li>
+                    <a href="">{article.comments}</a>
+                  </li>
+                </SocialCounts>
+                <SocialActions>
+                  <button>
+                    <img
+                      src="https://static-exp1.licdn.com/sc/h/d310t2g24pvdy4pt1jkedo4yb"
+                      alt=""
+                    />
+                    <span>Like</span>
+                  </button>
 
-                    <button>
-                      <TfiCommentAlt />
-                      <span>Comments</span>
-                    </button>
+                  <button>
+                    <TfiCommentAlt />
+                    <span>Comments</span>
+                  </button>
 
-                    <button>
-                      <RiShareForwardLine />
-                      <span>Share</span>
-                    </button>
+                  <button>
+                    <RiShareForwardLine />
+                    <span>Share</span>
+                  </button>
 
-                    <button>
-                      <AiOutlineSend />
-                      <span>Send</span>
-                    </button>
-                  </SocialActions>
-                </Article>
-              ))}
-          </Content>
-          <PostModal showModal={showModal} handleClick={handleClick} />
-        </Container>
-      )}
+                  <button>
+                    <AiOutlineSend />
+                    <span>Send</span>
+                  </button>
+                </SocialActions>
+              </Article>
+            ))}
+        </Content>
+        <PostModal showModal={showModal} handleClick={handleClick} />
+      </Container>
     </>
   );
 };
