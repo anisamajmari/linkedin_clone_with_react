@@ -1,7 +1,15 @@
 import { signInWithPopup, signOut } from "firebase/auth";
 import { auth, provider, storage } from "../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { collection, addDoc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  doc,
+  getDoc,
+  orderBy,
+  query,
+  getDocs,
+} from "firebase/firestore";
 import db from "../firebase";
 import { SET_USER, SET_LOADING_STATUS } from "./actionType";
 
@@ -101,5 +109,17 @@ export function postArticleAPI(payload) {
       });
       dispatch(setLoading(false));
     }
+  };
+}
+
+export function getArticlesAPI() {
+  return async (dispatch) => {
+    let payload;
+
+    const q = query(collection(db, "articles"), orderBy("actor.date", "desc"));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      console.log(doc.data());
+    });
   };
 }

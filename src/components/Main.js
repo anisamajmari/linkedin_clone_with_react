@@ -3,14 +3,19 @@ import styled from "styled-components";
 import { TfiCommentAlt } from "react-icons/tfi";
 import { RiShareForwardLine } from "react-icons/ri";
 import { AiOutlineSend } from "react-icons/ai";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FiLoader } from "react-icons/fi";
 
 import PostModal from "./PostModal";
 import { connect } from "react-redux";
+import { getArticlesAPI } from "../actions";
 
 const Main = (props) => {
   const [showModal, setShowModal] = useState("close");
+
+  useEffect(() => {
+    props.getArticles();
+  }, []);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -351,6 +356,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-const dispatchToProps = (dispatch) => ({});
+const dispatchToProps = (dispatch) => ({
+  getArticles: () => dispatch(getArticlesAPI()),
+});
 
 export default connect(mapStateToProps, dispatchToProps)(Main);
