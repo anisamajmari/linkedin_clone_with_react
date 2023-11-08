@@ -11,6 +11,10 @@ const Home = (props) => {
   return (
     <Container>
       {!props.user && <Navigate to="/" />}
+      <InfoBar>
+        This is not real linkedin. This is just a simple copy build with
+        firebase for portifolio purposes.
+      </InfoBar>
       <Section>
         <h5>
           <a href="">Hiring in a hurry? -</a>
@@ -30,6 +34,16 @@ const Home = (props) => {
     </Container>
   );
 };
+
+const InfoBar = styled.div`
+  padding: 20px 30px;
+  background-color: #fca49a;
+  color: red;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+`;
 
 const Container = styled.div`
   padding-top: 52px;

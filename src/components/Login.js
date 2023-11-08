@@ -10,6 +10,10 @@ const Login = (props) => {
     <Container>
       {props.user && <Navigate to="/home" />}
 
+      <InfoBar>
+        This is not real linkedin. This is just a simple copy build with
+        firebase for portifolio purposes.
+      </InfoBar>
       <Nav>
         <a href="/">
           <img src="/images/login-logo.svg" alt="" />
@@ -35,6 +39,16 @@ const Login = (props) => {
     </Container>
   );
 };
+
+const InfoBar = styled.div`
+  padding: 20px 30px;
+  background-color: #fca49a;
+  color: red;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+`;
 
 const Container = styled.div`
   padding: 0px;
