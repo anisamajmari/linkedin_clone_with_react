@@ -69,7 +69,7 @@ const Header = (props) => {
               </a>
 
               <SignOut onClick={() => props.signOut()}>
-                <a href="">Sign Out</a>
+                <a href="/">Sign Out</a>
               </SignOut>
             </User>
             <Work>

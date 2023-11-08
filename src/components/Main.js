@@ -86,7 +86,7 @@ const Main = (props) => {
             props.articles.map((article, key) => (
               <Article key={key}>
                 <SharedActor>
-                  <a href="">
+                  <a href="/">
                     <img src={article.actor.image} alt="" />
                     <div>
                       <span>{article.actor.title}</span>
@@ -103,7 +103,7 @@ const Main = (props) => {
 
                 <Description>{article.description}</Description>
                 <SharedImage>
-                  <a href="">
+                  <a href="/">
                     {!article.sharedImg && article.video ? (
                       <ReactPlayer width={"100%"} url={article.video} />
                     ) : (
@@ -128,7 +128,7 @@ const Main = (props) => {
                     </button>
                   </li>
                   <li>
-                    <a href="">{article.comments}</a>
+                    <a href="/">{article.comments}</a>
                   </li>
                 </SocialCounts>
                 <SocialActions>

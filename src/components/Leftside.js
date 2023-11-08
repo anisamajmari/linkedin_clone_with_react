@@ -7,25 +7,17 @@ const Leftside = (props) => {
       <ArtCard>
         <UserInfo>
           <CardBackground />
-          <a href="">
-            <Photo />
-            <Link>
-              Welcome, {props.user ? props.user.displayName : "there"}!
-            </Link>
-          </a>
-          <a href="">
-            <AddPhotoText>Add a photo</AddPhotoText>
-          </a>
+          <Photo />
+          <Link>Welcome, {props.user ? props.user.displayName : "there"}!</Link>
+          <AddPhotoText>Add a photo</AddPhotoText>
         </UserInfo>
 
         <Widget>
-          <a href="">
-            <div>
-              <span>Connections</span>
-              <span>Grow your network</span>
-            </div>
-            <img src="/images/widget-icon.svg" alt="" />
-          </a>
+          <div>
+            <span>Connections</span>
+            <span>Grow your network</span>
+          </div>
+          <img src="/images/widget-icon.svg" alt="" />
         </Widget>
         <Item>
           <span>
@@ -35,19 +27,19 @@ const Leftside = (props) => {
         </Item>
       </ArtCard>
       <CommunityCard>
-        <a href="">
+        <a href="/">
           <span>Groups</span>
         </a>
-        <a href="">
+        <a href="/">
           <span>
             Events
             <img src="/images/plus-icon.svg" alt="" />
           </span>
         </a>
-        <a href="">
+        <a href="/">
           <span>Follow Hashtags</span>
         </a>
-        <a href="">
+        <a href="/">
           <span>Dsicover more</span>
         </a>
       </CommunityCard>
